@@ -393,6 +393,92 @@ That is grace. Grace is the spiritual gravity of God.
 
 **Physicist sees:** Clean prose + tiny colored badges after each paragraph + equation with term stack. Click any badge â†’ full annotation unfolds. Click the "â–¶" after "gravity holds you" â†’ five properties, scripture anchor, and gap analysis appear. Click again â†’ gone.
 
+
+---
+
+## FEATURE 5: MATH TRANSLATION TOGGLE (The Non-Math Reader Layer)
+
+### What It Does
+A separate toggle (independent of Reader/Physicist mode) that makes equations accessible to anyone. When OFF, equations display clean LaTeX. When ON, English word translations appear stacked directly above each symbol in the equation. The words won't form a grammatically correct sentence on their own, but when the reader sees the plain English summary below, every word clicks because they just saw where it came from.
+
+### The Three States
+
+**Math Mode (default):** Clean equation only.
+```
+chi = integral (G * M * E * S * T * K * R * Q * F * C) dx dy dt
+```
+
+**Translation Mode (toggle ON):** Word stack appears ABOVE each symbol.
+```
+Coherence   across all  Grace  Mind  Entropy  Spirit  Time  Knowledge  Relational  Quantum  Faith  Curvature   over space+time
+   chi    =   integral  ( G   * M   *  E     *  S    * T   *   K      *    R      *   Q    *  F   *    C    )  dx dy dt
+```
+
+**Full Mode (both toggles ON):** Word stack + plain English + collapsible legend.
+```
+Coherence   across all  Grace  Mind  Entropy  Spirit  Time  Knowledge  Relational  Quantum  Faith  Curvature   over space+time
+   chi    =   integral  ( G   * M   *  E     *  S    * T   *   K      *    R      *   Q    *  F   *    C    )  dx dy dt
+-----
+"Reality is the product of ten interlocking variables -- physical and spiritual -- integrated across all space and time.
+ If any single variable goes to zero, the entire coherence field collapses. Everything depends on everything."
+```
+
+### Toggle Control
+- Ribbon button: Greek letter icon or book icon (separate from the microscope toggle)
+- - Keyboard shortcut: Ctrl+Shift+M (Math translation)
+  - - Can be ON while Reader mode is ON (they're independent)
+    - - Settings: Default ON or OFF per user preference
+     
+      - ### Render Rules
+      - 1. Word row sits DIRECTLY ABOVE the equation row, same grid columns
+        2. 2. Words are muted color, smaller font, centered under their symbol
+           3. 3. Subtle vertical hairlines connect each word to its symbol below
+              4. 4. Word row has very light background shading (barely there, just enough to distinguish)
+                 5. 5. Thin border around the entire math block when translation is active
+                    6. 6. Animation: words fade in/out on toggle (100ms)
+                      
+                       7. ### Why This Matters
+                       8. A physicist reads chi = integral(G*M*E*S*T*K*R*Q*F*C) and thinks "ten-variable coherence integral."
+                       9. A non-physicist reads the SAME equation and sees: "Coherence equals Grace times Mind times Entropy..." and gets the conceptual architecture without needing the math. Same page. Same document. No dumbing down. Just a layer that reveals what the symbols mean in human words.
+                      
+                       10. ### Markdown Syntax
+                       11. Uses the same `[!math-stack]` callout from Feature 4. The plugin reads the term grid and renders it as the word-above-symbol overlay when the toggle is ON.
+                      
+                       12. ```markdown
+                           > [!math-stack]
+                           > | chi | = | integral | ( G | * M | * E | * S | * T | * K | * R | * Q | * F | * C ) | dx dy dt |
+                           > | Coherence | | across all | Grace | Mind | Entropy | Spirit | Time | Knowledge | Relational | Quantum | Faith | Curvature | over space and time |
+                           > ---
+                           > Reality is the product of ten interlocking variables integrated across all space and time.
+                           ```
+
+                           ### CSS Classes
+                           ```css
+                           .math-translation-row { /* the English words row above equation */ }
+                           .math-translation-word { /* individual word cell */ }
+                           .math-translation-connector { /* subtle hairline connecting word to symbol */ }
+                           .math-translation-active { /* parent class when toggle is ON */ }
+                           .math-translation-shading { /* very light background on word row */ }
+                           ```
+
+                           ---
+
+                           ## UPDATED TOGGLE SUMMARY
+
+                           The plugin has THREE independent toggles:
+
+                           | Toggle | Icon | Shortcut | What It Controls |
+                           |--------|------|----------|-----------------|
+                           | Reader/Physicist | Microscope | Ctrl+Shift+L | Annotation badges + expand panels |
+                           | Math Translation | Book/Alpha | Ctrl+Shift+M | English words above equation symbols |
+                           | Math Full | (sub-toggle) | Click equation | Expand legend + proof below equation |
+
+                           All three are independent. Any combination works. Reader mode + Math Translation ON = clean prose with human-readable equations. Physicist mode + Math Translation OFF = annotations visible, equations raw. Everything ON = full disclosure, every layer visible.
+
+                           ---
+
+                           *Updated: March 23, 2026 -- Added Feature 5 (Math Translation Toggle)*
+                           
 **Machine sees:** Raw `%%{...}%%` JSON blocks for every paragraph. Feeds scoring engine.
 
 ---
