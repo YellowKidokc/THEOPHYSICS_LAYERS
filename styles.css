@@ -30,6 +30,39 @@ body.theophysics-reader-mode .theo-annotation-panel {
   transform: translateY(-1px);
 }
 
+
+body[data-theo-badge-size="medium"] .theo-badge {
+  font-size: 0.82em;
+  padding: 2px 8px;
+}
+
+body[data-theo-badge-size="hidden"] .theo-badge {
+  display: none !important;
+}
+
+.theo-inline-annotations {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-left: 6px;
+}
+
+.theo-annotation-meta {
+  display: grid;
+  gap: 4px;
+  font-family: var(--font-monospace);
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.theo-annotation-note {
+  color: var(--text-normal);
+}
+
+.theo-annotation-panel-markdown .callout {
+  margin: 8px 0;
+}
+
 /* Law badges — blue */
 .theo-badge-law {
   background: rgba(59, 130, 246, 0.15);
