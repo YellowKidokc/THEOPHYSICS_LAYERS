@@ -21,7 +21,7 @@
  *   - > [!math-stack] with | symbol | = | translation | grid
  */
 
-import { Plugin, MarkdownPostProcessorContext, PluginSettingTab, App, Setting } from "obsidian";
+import { Plugin, PluginSettingTab, App, Setting, MarkdownView } from "obsidian";
 
 // ============================================================
 // TYPES
@@ -78,8 +78,7 @@ export default class TheophysicsLayersPlugin extends Plugin {
     // RIBBON TOGGLE — 🔬 Microscope icon
     this.addRibbonIcon("microscope", "Toggle Layers (Reader/Physicist)", () => {
       this.physicistMode = !this.physicistMode;
-      // TODO: Re-render all active markdown views
-      // TODO: Update ribbon icon state (active/inactive)
+      this.rerenderAllMarkdownViews();
       console.log(`Theophysics Layers: ${this.physicistMode ? "PHYSICIST" : "READER"} mode`);
     });
 
@@ -87,10 +86,10 @@ export default class TheophysicsLayersPlugin extends Plugin {
     this.addCommand({
       id: "toggle-layers",
       name: "Toggle Reader/Physicist Mode",
-      hotkeys: [{ modifiers: ["Ctrl", "Shift"], key: "l" }],
+      hotkeys: [{ modifiers: ["Mod", "Shift"], key: "l" }],
       callback: () => {
         this.physicistMode = !this.physicistMode;
-        // TODO: Re-render
+        this.rerenderAllMarkdownViews();
       },
     });
 
@@ -128,6 +127,15 @@ export default class TheophysicsLayersPlugin extends Plugin {
 
     // SETTINGS TAB
     this.addSettingTab(new LayersSettingTab(this.app, this));
+  }
+
+  /** Force all open markdown views to re-render so mode change takes effect. */
+  private rerenderAllMarkdownViews() {
+    this.app.workspace.iterateAllLeaves((leaf) => {
+      if (leaf.view instanceof MarkdownView) {
+        leaf.view.previewMode.rerender(true);
+      }
+    });
   }
 
   onunload() {}
